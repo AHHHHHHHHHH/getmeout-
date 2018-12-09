@@ -1,6 +1,7 @@
 package com.example.grant.gmo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         startTimer();
     }
     public void startTimer() {
+        if (timeleft != 0) {
+            return;
+        }
         final ProgressBar bar = findViewById(R.id.progressBar);
         Spinner spinner = findViewById(R.id.spinner);
         String text = spinner.getSelectedItem().toString();
@@ -61,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
     public void fakecall() {
-        Button button = findViewById(R.id.button);
-        button.setText("This is where we fake call");
+        startActivity(new Intent(getApplicationContext(), CallActivity.class));
         return;
     }
 }

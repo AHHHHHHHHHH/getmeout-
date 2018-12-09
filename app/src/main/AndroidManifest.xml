@@ -19,11 +19,17 @@
         <activity
             android:name=".SettingsScreen"
             android:label="@string/title_activity_settings_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".CallActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_call"
+            android:theme="@style/FullscreenTheme"></activity>
     </application>
 
 </manifest>
