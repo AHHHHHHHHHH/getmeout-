@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GMO</string>
+    <string name="title_activity_settings_screen">SettingsScreen</string>
 </resources>
