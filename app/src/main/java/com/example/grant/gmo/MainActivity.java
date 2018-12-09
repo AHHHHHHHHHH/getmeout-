@@ -1,8 +1,10 @@
 package com.example.grant.gmo;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
@@ -33,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         ProgressBar bar = findViewById(R.id.progressBar);
         bar.setMax(100);
         bar.setProgress(100);
-
     }
     public void ButtonOnClick(View v) {
         startTimer();
@@ -61,11 +62,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 fakecall();
+                vibrate();
             }
         }.start();
     }
     public void fakecall() {
         startActivity(new Intent(getApplicationContext(), CallActivity.class));
+        return;
+    }
+    public void vibrate() {
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(2000);
         return;
     }
 }
