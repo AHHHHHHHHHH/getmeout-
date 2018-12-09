@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="67dp"
+        android:layout_height="34dp"
+        android:text="Volume"
+        android:textSize="18sp"
+        tools:layout_editor_absoluteX="63dp"
+        tools:layout_editor_absoluteY="424dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar2"
+        android:layout_width="185dp"
+        android:layout_height="34dp"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="424dp" />
+
+    <Switch
+        android:id="@+id/switch3"
+        android:layout_width="137dp"
+        android:layout_height="36dp"
+        android:text="Vibration"
+        tools:layout_editor_absoluteX="108dp"
+        tools:layout_editor_absoluteY="371dp" />
+
     <Button
         android:id="@+id/button"
         android:layout_width="75dp"
@@ -45,13 +69,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="6dp"
+        android:progressDrawable="@color/design_default_color_primary_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442" />
+        app:layout_constraintVertical_bias="0.258" />
 
     <EditText
         android:id="@+id/editText2"
@@ -70,7 +95,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar"
-        app:layout_constraintVertical_bias="0.177" />
+        app:layout_constraintVertical_bias="0.034" />
 
     <EditText
         android:id="@+id/editText3"
@@ -87,9 +112,8 @@
         android:text="Enter Time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.607" />
+        app:layout_constraintVertical_bias="0.083" />
 
 </android.support.constraint.ConstraintLayout>
