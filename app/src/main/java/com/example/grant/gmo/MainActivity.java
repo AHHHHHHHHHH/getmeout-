@@ -3,6 +3,8 @@ package com.example.grant.gmo;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
+import android.widget.Switch;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,6 +38,25 @@ public class MainActivity extends AppCompatActivity {
         ProgressBar bar = findViewById(R.id.progressBar);
         bar.setMax(100);
         bar.setProgress(100);
+
+        final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
+        final Switch volumeswitch = (Switch) findViewById(R.id.VolumeSwitch);
+
+        final AudioManager audioManager = (AudioManager) getSystemService(getApplicationContext().AUDIO_SERVICE);
+
+        vibrateswitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+            }
+        });
+
+        volumeswitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+            }
+        });
     }
     public void ButtonOnClick(View v) {
         startTimer();
@@ -63,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             public void onFinish() {
                 fakecall();
                 vibrate();
+                soundPlayer();
             }
         }.start();
     }
@@ -74,5 +97,9 @@ public class MainActivity extends AppCompatActivity {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(2000);
         return;
+    }
+    public void soundPlayer() {
+        final MediaPlayer ringtone = MediaPlayer.create(this, R.raw.alpha);
+        ringtone.start();
     }
 }
