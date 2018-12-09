@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -37,15 +38,14 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] items = new String[]{"15 Seconds", "30 Seconds", "1 Minute", "2 Minutes", "5 Minutes"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spinner.setAdapter(adapter);
     }
     public void buttonOnClick(View v) {
         Button button = (Button) v;
         ((Button) v).setText("niggers");
-
-    }
-    public void SpinerOnClick(View v) {
-        Spinner spinner = findViewById(R.id.spinner);
-        String[] items = new String[]{"1", "2", "three"};
 
     }
 }
