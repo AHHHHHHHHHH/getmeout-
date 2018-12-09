@@ -1,38 +1,25 @@
 package com.example.grant.gmo;
 
 import android.app.Activity;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
-    TextView timerTextView;
-    long startTime = 0;
-
-    //runs without a timer by reposting this handler at the end of the runnable
-    Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            long millis = System.currentTimeMillis() - startTime;
-            int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
-            seconds = seconds % 60;
-
-            timerTextView.setText(String.format("%d:%02d", minutes, seconds));
-
-            timerHandler.postDelayed(this, 500);
-        }
-    };
+public class MainActivity extends AppCompatActivity {
+        private long timer = 30000;
+        private long timeleft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +29,40 @@ public class MainActivity extends Activity {
         String[] items = new String[]{"15 Seconds", "30 Seconds", "1 Minute", "2 Minutes", "5 Minutes"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         spinner.setAdapter(adapter);
-    }
-    public void buttonOnClick(View v) {
-        Button button = (Button) v;
-        ((Button) v).setText("niggers");
+        ProgressBar bar = findViewById(R.id.progressBar);
+        bar.setMax(100);
+        bar.setProgress(100);
 
+    }
+    public void ButtonOnClick(View v) {
+        startTimer();
+    }
+    public void startTimer() {
+        final ProgressBar bar = findViewById(R.id.progressBar);
+        Spinner spinner = findViewById(R.id.spinner);
+        String text = spinner.getSelectedItem().toString();
+        if (text.indexOf("Second") != -1) {
+            timer = 1000 * Long.parseLong(text.split(" ")[0]);
+        } else {
+            timer = 1000 * 60 * Long.parseLong(text.split(" ")[0]);
+        }
+        bar.setMax((int)timer);
+        timeleft = new Long(timer);
+        CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeleft-=1000;
+                bar.setProgress((int)timeleft);
+            }
+            @Override
+            public void onFinish() {
+                fakecall();
+            }
+        }.start();
+    }
+    public void fakecall() {
+        Button button = findViewById(R.id.button);
+        button.setText("This is where we fake call");
+        return;
     }
 }
