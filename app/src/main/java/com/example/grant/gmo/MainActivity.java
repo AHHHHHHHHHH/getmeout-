@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.media.MediaPlayer;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         }.start();
     }
     public void fakecall() {
-        startActivity(new Intent(getApplicationContext(), CallActivity.class));
+        startActivity(new Intent(getApplicationContext(), call2.class));
         return;
     }
     public void vibrate() {
