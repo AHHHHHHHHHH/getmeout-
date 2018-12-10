@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         }
         bar.setMax((int)timer);
         timeleft = new Long(timer);
-        CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
+        final CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
             @Override
             public void onTick(long l) {
                 timeleft-=1000;
@@ -73,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
                 soundPlayer();
             }
         }.start();
+        Button cancel = findViewById(R.id.button2);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bar.setProgress((int)timer);
+                countDownTimer.cancel();
+            }
+        });
     }
     public void fakecall() {
         startActivity(new Intent(getApplicationContext(), call2.class));
@@ -94,6 +102,26 @@ public class MainActivity extends AppCompatActivity {
         }
         return;
     }
+//    public void cancelButton() {
+//        Button cancel = findViewById(R.id.button2);
+//        final CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
+//            @Override
+//            public void onTick(long millisUntilFinished) {
+//                timeleft-=1000;
+//            }
+//
+//            @Override
+//            public void onFinish() {
+//                return;
+//            }
+//        };
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                countDownTimer.cancel();
+//            }
+//        });
+ //   }
 //    public void switches() {
 //        final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
 //        final Switch volumeswitch = (Switch) findViewById(R.id.VolumeSwitch);
