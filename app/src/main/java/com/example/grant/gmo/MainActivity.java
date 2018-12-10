@@ -22,6 +22,7 @@ import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
         private long timer = 30000;
@@ -38,25 +39,8 @@ public class MainActivity extends AppCompatActivity {
         ProgressBar bar = findViewById(R.id.progressBar);
         bar.setMax(100);
         bar.setProgress(100);
-
         final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
         final Switch volumeswitch = (Switch) findViewById(R.id.VolumeSwitch);
-
-        final AudioManager audioManager = (AudioManager) getSystemService(getApplicationContext().AUDIO_SERVICE);
-
-        vibrateswitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
-            }
-        });
-
-        volumeswitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
-            }
-        });
     }
     public void ButtonOnClick(View v) {
         startTimer();
@@ -94,12 +78,45 @@ public class MainActivity extends AppCompatActivity {
         return;
     }
     public void vibrate() {
+        final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vibrator.vibrate(2000);
+        if (vibrateswitch.isChecked()) {
+            vibrator.vibrate(2000);
+        }
         return;
     }
     public void soundPlayer() {
-        final MediaPlayer ringtone = MediaPlayer.create(this, R.raw.alpha);
-        ringtone.start();
+        final MediaPlayer ringtone = MediaPlayer.create(this, R.raw.windchimer);
+        final Switch volumeswitch = findViewById(R.id.VolumeSwitch);
+        if (volumeswitch.isChecked()) {
+            ringtone.start();
+        }
+        return;
     }
+//    public void switches() {
+//        final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
+//        final Switch volumeswitch = (Switch) findViewById(R.id.VolumeSwitch);
+//
+//        final AudioManager audioManager = (AudioManager) getSystemService(getApplicationContext().AUDIO_SERVICE);
+//
+//        vibrateswitch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (vibrateswitch.isChecked()){
+//                    audioManager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+//                }
+//            }
+//        });
+//
+//        volumeswitch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(volumeswitch.isChecked()) {
+//                    audioManager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+//                }
+//            }
+//        });
+//        return;
+//    }
+
 }
