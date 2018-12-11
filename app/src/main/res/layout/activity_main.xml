@@ -149,11 +149,19 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:visibility="invisible"
         android:layout_width="371dp"
         android:layout_height="646dp"
+        android:visibility="invisible"
         app:srcCompat="@drawable/fakecallscreenandroid"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="70dp"
+        android:layout_height="39dp"
+        android:text="BACK"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="7dp" />
 
 </android.support.constraint.ConstraintLayout>

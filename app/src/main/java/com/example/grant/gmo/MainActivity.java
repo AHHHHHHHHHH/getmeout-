@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         bar.setProgress(100);
         final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
         final Switch volumeswitch = (Switch) findViewById(R.id.VolumeSwitch);
-
+        Button back = findViewById(R.id.backButton);
     }
     public void ButtonOnClick(View v) {
         startTimer();
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 fakeCallScreen();
                 cancel.setVisibility(View.INVISIBLE);
                 callbutton.setVisibility(View.INVISIBLE);
+                backButton();
             }
         }.start();
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 bar.setProgress((int)timer);
                 countDownTimer.cancel();
+                startTimer();
             }
         });
     }
@@ -111,6 +113,22 @@ public class MainActivity extends AppCompatActivity {
     public void fakeCallScreen() {
         ImageView fakescreen = (ImageView) findViewById(R.id.imageView3);
         fakescreen.setVisibility(View.VISIBLE);
+    }
+    public void backButton() {
+        final Button cancel = findViewById(R.id.button2);
+        final Button callbutton = findViewById(R.id.button);
+        Button back = findViewById(R.id.backButton);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final ProgressBar bar = findViewById(R.id.progressBar);
+                ImageView fakescreen = (ImageView) findViewById(R.id.imageView3);
+                fakescreen.setVisibility(View.INVISIBLE);
+                cancel.setVisibility(View.VISIBLE);
+                callbutton.setVisibility(View.VISIBLE);
+                bar.setProgress((int)timer);
+            }
+        });
     }
 
 //    public void cancelButton() {
