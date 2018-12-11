@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.media.MediaPlayer;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         bar.setProgress(100);
         final Switch vibrateswitch = (Switch) findViewById(R.id.vibrationSwitch);
         final Switch volumeswitch = (Switch) findViewById(R.id.VolumeSwitch);
+
     }
     public void ButtonOnClick(View v) {
         startTimer();
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
         if (timeleft != 0) {
             return;
         }
+        final Button cancel = findViewById(R.id.button2);
+        final Button callbutton = findViewById(R.id.button);
         final ProgressBar bar = findViewById(R.id.progressBar);
         Spinner spinner = findViewById(R.id.spinner);
         String text = spinner.getSelectedItem().toString();
@@ -68,12 +72,14 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                fakecall();
+                //fakecall();
                 vibrate();
                 soundPlayer();
+                fakeCallScreen();
+                cancel.setVisibility(View.INVISIBLE);
+                callbutton.setVisibility(View.INVISIBLE);
             }
         }.start();
-        Button cancel = findViewById(R.id.button2);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
         }
         return;
     }
+    public void fakeCallScreen() {
+        ImageView fakescreen = (ImageView) findViewById(R.id.imageView3);
+        fakescreen.setVisibility(View.VISIBLE);
+    }
+
 //    public void cancelButton() {
 //        Button cancel = findViewById(R.id.button2);
 //        final CountDownTimer countDownTimer = new CountDownTimer(timer, 1000) {
